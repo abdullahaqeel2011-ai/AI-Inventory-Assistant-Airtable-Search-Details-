@@ -80,12 +80,6 @@ Customize for your Airtable base and start querying your inventory.
 
 This project is licensed under the MIT License – see the LICENSE file.
 
-🔗 Connect
-
-GitHub: https://github.com/abdullahaqeel2011-ai
-
-Linkedin: www.linkedin.com/in/abdullah-aqeel-00939638a
-
 📣 Suggested Hashtags
 #🤖AIInventory #📦AirtableAutomation #⚡n8nWorkflows #💬OpenAI #GPT4 #📊InventoryManagement #🛠Automation #SmartInventory #NoCodeAI #ProductivityTools
 
