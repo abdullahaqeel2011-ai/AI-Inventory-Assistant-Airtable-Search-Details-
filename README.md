@@ -39,7 +39,7 @@ The AI interprets your request, searches Airtable, and returns detailed results 
 
 Clone the repository:
 
-git clone https://github.com/yourusername/ai-inventory-assistant.git
+git clone https://github.com/abdullahaqeel2011-ai.git
 
 
 Configure n8n with Airtable API credentials.
