@@ -1,0 +1,179 @@
+{
+  "name": "AI Inventory Assistant – Airtable (Search + Details) OPEN AI",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -480,
+        -64
+      ],
+      "id": "d1636a56-6a59-44fa-994c-148cd29c6186",
+      "name": "When chat message received",
+      "webhookId": "eaccbdf8-0141-47ab-a25e-5d6ff22b41b2"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=You are an inventory assistant connected to Airtable via n8n.\n\nYou can:\n- List products by brand, category, or other fields using Airtable list records.\n- Retrieve full product details using Airtable data.\n- Use Record IDs returned from Airtable list results when needed.\n\nRules:\n- Always list or search products using Airtable List Records first.\n- Never say you need a Record ID from the user.\n- Record IDs must be obtained internally from Airtable.\n- Never invent data.\n- If no products match, say:\n  \"No matching products found in Airtable.\"\n\nWhen the user asks:\n- \"List Xiaomi products\" → list all Xiaomi products.\n- \"Show details of Ultra Slim Phone Case\" → find it, then show full details.\n\nUser input:\n{{ $json.chatInput }}\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -272,
+        -64
+      ],
+      "id": "1c4c14cd-eecb-495b-8021-32f385d952ef",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 500
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -112,
+        112
+      ],
+      "id": "5fbce11a-ede3-4682-b785-6fb81c550c37",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appbCHhDVDHdEmwnT",
+          "mode": "list",
+          "cachedResultName": "Products",
+          "cachedResultUrl": "https://airtable.com/appbCHhDVDHdEmwnT"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl7DjHg5xcJVcv9p",
+          "mode": "list",
+          "cachedResultName": "Products",
+          "cachedResultUrl": "https://airtable.com/appbCHhDVDHdEmwnT/tbl7DjHg5xcJVcv9p"
+        },
+        "options": {
+          "view": {
+            "__rl": true,
+            "value": "viwSoMa5fnyRALEuh",
+            "mode": "list",
+            "cachedResultName": "Grid view",
+            "cachedResultUrl": "https://airtable.com/appbCHhDVDHdEmwnT/tbl7DjHg5xcJVcv9p/viwSoMa5fnyRALEuh"
+          }
+        },
+        "sort": {
+          "property": [
+            {
+              "field": "Product Name"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        32,
+        112
+      ],
+      "id": "18f9fd3d-bd00-442c-ac89-8f1f0112d4b2",
+      "name": "Search records in Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "16DF6UGwx0ZHOAZa",
+          "name": "Airtable Personal Access Token account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -256,
+        112
+      ],
+      "id": "9131e370-d8d3-4ada-80ce-51e35110007a",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "tMqluPtSZxUVH2UN",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records in Airtable": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "26bab482-018c-4152-98a9-eebe9267498c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "07b68436b7cae35b1aacce4ed54533dcfcb1a41e7bcb72aadc6de469dc8bb7c4"
+  },
+  "id": "AJcnkJiW9jwzB6qB",
+  "tags": []
+}
