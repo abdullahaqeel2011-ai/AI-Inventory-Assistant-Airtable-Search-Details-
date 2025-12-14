@@ -81,9 +81,11 @@ Customize for your Airtable base and start querying your inventory.
 This project is licensed under the MIT License – see the LICENSE file.
 
 📣 Suggested Hashtags
+
 #🤖AIInventory #📦AirtableAutomation #⚡n8nWorkflows #💬OpenAI #GPT4 #📊InventoryManagement #🛠Automation #SmartInventory #NoCodeAI #ProductivityTools
 
 👤 Author
 
 Abdullah Aqeel
+
 AI Automation Expert | Software Quality Assurance Engineer (SQAE)
