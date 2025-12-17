@@ -88,4 +88,4 @@ This project is licensed under the MIT License – see the LICENSE file.
 
 Abdullah Aqeel
 
-AI Automation Expert | Software Quality Assurance Engineer (SQAE)
+AI Automation Engineer | Software Quality Assurance Engineer (SQAE)
